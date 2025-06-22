@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f8f9fa; padding: 40px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: scale(1.02); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+        .fade-in { animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">Share Your Testimonial ✨</h1>
+        <div class="card p-4 mb-4 shadow-sm">
+            <div class="form-group">
+                <input type="text" id="nameInput" class="form-control mb-3" placeholder="Your Name">
+                <textarea id="messageInput" class="form-control mb-3" placeholder="Your Testimonial" rows="4"></textarea>
+                <button class="btn btn-primary btn-block" onclick="addTestimonial()">Add Testimonial</button>
+            </div>
+        </div>
+
+        <h3 class="mb-4">What People Say 💬</h3>
+        <div id="testimonialList"></div>
+    </div>
+
+    <script>
+        function addTestimonial() {
+            const name = document.getElementById('nameInput').value;
+            const message = document.getElementById('messageInput').value;
+
+            if (name && message) {
+                const testimonialList = document.getElementById('testimonialList');
+                const testimonialItem = document.createElement('div');
+                testimonialItem.className = 'card p-3 mb-3 fade-in';
+                testimonialItem.innerHTML = `<strong>${name}</strong><p class='mb-0'>${message}</p>`;
+
+                testimonialList.prepend(testimonialItem);
+                document.getElementById('nameInput').value = '';
+                document.getElementById('messageInput').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
+
